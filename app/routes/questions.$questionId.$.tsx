@@ -28,7 +28,7 @@ export const loader = async ({request, params}: LoaderFunctionArgs) => {
   try {
     const dataPromise = loadQuestionDetail(request, questionId)
       .then(({data}) => data)
-      .catch(raise500)
+      // .catch(raise500)
     const tagsPromise = loadTags(request)
       .then(({data}) => data)
       .catch(raise500)
@@ -97,8 +97,7 @@ export default function RenderArticle() {
   }, [location.key])
 
   useEffect(() => {
-    data.then((val) => {
-      const question = val as Question
+    data.then((question: Question) => {
       if (question.title) document.title = question.title
     })
   }, [data])
